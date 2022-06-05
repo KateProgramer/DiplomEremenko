@@ -1,0 +1,47 @@
+﻿@model IEnumerable<UserLoyalty>;
+
+<div>
+    <br />
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-8"></div>
+        <div class="col-3">
+            <form method="post" asp-controller="UserLoyalty" asp-action="FilterView" style="width:100%">
+                <input style="width:66%" type="text" name="data" />
+                <input class="btn btn-sm text-white" style="background-color:black;width:28%;margin-left:4%;" type="submit" value="Найти" />
+            </form>
+        </div>
+    </div>
+    <br />
+    <div>
+        @{
+            if (Model.ToList().Count <= 0)
+            {
+                <div id="CountUsers" class="alert alert-danger alert-dismissible fade show" align="center" role="alert">
+                    <H1 class="alert-heading bottom-0">Не найдено ни одного пользователя </H1>
+                    <form method="get" asp-controller="UserLoyalty" asp-action="ShowAddView">
+                        <input class="btn btn-primary btn-sm" style="background-color:black" type="submit" value="Добавить" />
+                    </form>
+                </div>
+            }
+            else
+            {
+                <table class="table table-hover">
+                    <tr style="background-color:black"> <th class="text-white">Имя</th> 
+                    <th class="text-white">Фамилия</th>
+                    <th class="text-white">Номер карты</th>
+                    <th class="text-white"></th>
+                    <th><p> <a asp-controller="UserLoyalty" asp-action="ShowAddView"> <img src="~/css/person-plus.svg" style="height:30%;width:30%;margin-left:60%" /> </a></p></th> </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr> <td class="col-3">  <a style="text-decoration:none;color:black" asp-controller="ProgramLoyalty" asp-action="UserLoyalty" asp-all-route-data='new Dictionary<string,string> { { "id", @item.Id.ToString() } }'>@item.Name</a></td>
+                        <td class="col-3" style="color:black">@item.Surname</td> <td class="col-3" style="color:black">№ @item.Loyalty.CardNumber</td>
+                        <td class="col-2" style="color:black"></td>
+                        <td class="col-1"><a class="btn btn-sm text-white" style="background-color:red; margin-left:22%" asp-controller="UserLoyalty" asp-action="DeleteUser" asp-all-route-data='new Dictionary<string,string> { { "id", @item.Id.ToString() } }' &#128465>Удалить</a></td> </tr>
+                    }
+                </table>
+            }
+        }
+    </div>
+</div>

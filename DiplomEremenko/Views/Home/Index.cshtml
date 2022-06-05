@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-9">
+				<div class="row" style="margin-top:10%">
+		<div class="col-4"></div>
+		<div class="col-6">
+			</br>
+			<h2 style="margin-left:17%"></h2>
+		</div>
+		<div class="col-2"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-3"></div>
+
+		<div class="col-6">
+
+			<div class="container" style="height: 100%; width: 100%;">
+				<div class="row">
+					<div class="col-2"></div>
+					<div class="col-10">
+						<div style="width: 300px; height: 300px; outline: 5px solid #000; padding-top: 10%; margin-left:6%">
+							<img src="~/css/person.svg" class="rounded  d-block" style="height: 50%; width: 50%; margin-left: 25%;" alt="...">
+							
+								<a style="text-decoration:none" asp-controller="UserLoyalty" asp-action="UsersLoyalty">
+								<input type="submit" class="btn  text-white" style="width: 70%;margin-left: 15%; margin-top: 10%; background-color: #000;border-radius: 0%;" value="Найти">	
+								</a>
+						
+								<a style="text-decoration:none" asp-controller="UserLoyalty" asp-action="ShowAddView">
+								<input type="submit" class="btn text-darck" style="width: 70%;margin-left: 15%; margin-top: 10px; background-color: #fff; border-bottom: 3px solid #000;border-radius: 0%;" value="Добавить пользователя">	
+								</a>
+								
+						</div>
+					</div>
+				</div>
+			</div>				
+		</div>
+		<div class="col-3"></div>
+	</div>
+		</div>
+		<div class="col-3">
+			<img src="~/css/IMG_8991.jpg" style="width:340px ; height: 650px"/>
+		</div>
+	</div>
+</div>

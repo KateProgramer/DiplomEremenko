@@ -1,0 +1,42 @@
+﻿@model DiplomEremenko.Models.ViewModel.UserLoyaltyVM
+
+@{
+    ViewData["Title"] = "Создание пользователя";
+}
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-4"></div>
+        
+        <div class="col-4 mt-5">
+            @using(Html.BeginForm("CreateUser", "UserLoyalty", FormMethod.Post))
+            {
+                <h1 align="center">Введите данные</h1>
+                if (ViewBag.ModalError != null && ViewBag.ModalError != "")
+                {
+                    <div id="ModalError"  class="alert alert-danger alert-dismissible fade show" style="height:auto;width:100%" role="alert">
+                        <p class="alert-heading bottom-0">@ViewBag.ModalError</p>
+                    </div> 
+                }
+                <br/>
+                <input type="text" class="shadow-lg p-3 mb-1 bg-white rounded" asp-for="Name" style="width:100%" placeholder="Имя" /> 
+                <br/>
+                <br/>
+                <input type="text"  class="shadow-lg p-3 mb-1 bg-white rounded" asp-for="Surname" style="width:100%"  placeholder="Фамилия" /> 
+                <br/>
+                <br/>
+                <input type="text" class="shadow-lg p-3 mb-1 bg-white rounded" asp-for="Phone"  style="width:100%"  placeholder="Телефон" /> 
+                <br/>
+                <br/>
+                <input type="date" class="shadow-lg p-3 mb-1 bg-white rounded" asp-for="Birthday" style="width:100%"  placeholder="Дата рождения" /> 
+                <br/>
+                <br/>
+                <input class="btn btn-sm text-white shadow-lg p-2 mb-1 "  type="submit" style="background-color:black; width:100%" value="Создать" />
+            }
+        </div>
+    </div>
+</div>
+
+
+

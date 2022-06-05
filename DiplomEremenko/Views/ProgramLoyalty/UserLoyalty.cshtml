@@ -1,0 +1,76 @@
+﻿@model UserLoyalty;
+
+<div class="container">
+    <div class="row" style="margin-top:5%">
+
+        <div class="col-4"></div>
+
+        <div class="col-2">
+             <div>
+                 <label style="margin-bottom:3%;">Имя</label>
+                <p class="shadow-lg p-3 mb-5 bg-white rounded">@Model.Name</p>
+                <label style="margin-bottom:3%;">Дата рождения</label>
+                <p class="shadow-lg p-3 mb-5 bg-white rounded">@Model.Birthday.Date.ToShortDateString()</p>
+                <label style="margin-bottom:3%;">Номер карты №</label>
+                <p class="shadow-lg p-3 mb-5 bg-white rounded">@Model.Loyalty.CardNumber</p>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <label style="margin-bottom:3%;">Фамилия</label>
+            <p class="shadow-lg p-3 mb-5 bg-white rounded">@Model.Surname</p> 
+            <label style="margin-bottom:3%;">Телефон</label>
+            <p class="shadow-lg p-3 mb-5 bg-white rounded">@Model.Phone</p>
+            <label style="margin-bottom:3%;">Баланс</label>
+            <p class="shadow-lg p-3 mb-5 bg-white rounded">@Model.Loyalty.Balance</p>
+        </div>
+
+        <div class="col-4"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-4">
+            @using(Html.BeginForm("AddBonus", "ProgramLoyalty", FormMethod.Post,new {style="display:inline-block;width:100%"}))
+            {
+                     
+                    <input type="hidden" name="id" style="width:0%" value="@Model.Loyalty.UserLoyaltyId"/>
+                    <input class="shadow p-1 mb-1 bg-white rounded" style="width:47%" type="text" name="countBonus"  placeholder="Введите сумму" />  
+                    <input  class="btn btn-primary btn-sm shadow p-2 mb-1" style="background-color:black;width:46%;margin-left:5%" type="submit" value="Начислить" />
+                }
+        </div>
+         
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-4">
+             @using(Html.BeginForm("offBonus", "ProgramLoyalty", FormMethod.Post))
+                {
+                    <br/>
+                    <input type="hidden" name="id" value="@Model.Loyalty.UserLoyaltyId"/>
+                    <input class="btn btn-primary btn-sm shadow p-2 mb-1" style="width:100%;background-color:black" type="submit" value="Списать бонусы" />
+                }
+        </div>    
+
+        <div class="col-4 position-relative">
+           <div class="bottom-0 end-0" style="width:400px;margin-bottom:0">
+                @if (ViewBag.offBonus != null && ViewBag.offBonus!=0)
+                {
+                    <div id="myAlert" class="alert alert-success alert-dismissible fade show" style="height:50px" role="alert">
+                        <p class="alert-heading">Списано @ViewBag.offBonus бонусов.</p>
+                    </div>
+                }
+
+                @if (ViewBag.CountBonus != null)
+                {
+                    <div id="myAlert"  class="alert alert-danger alert-dismissible fade show" style="height:50px" role="alert">
+                        <p class="alert-heading bottom-0">Невозможно начислить @ViewBag.CountBonus бонусов</p>
+                    </div>  
+                }
+            </div>
+        </div>
+    </div>
+</div>

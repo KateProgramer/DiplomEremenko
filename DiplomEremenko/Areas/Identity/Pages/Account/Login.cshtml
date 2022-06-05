@@ -1,0 +1,54 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "АВТОРИЗАЦИЯ";
+}
+
+<div  class="row" style="margin-top: 10%; margin-left:35%" >
+    <div class="col-md-6">
+        <section>
+            <form id="account" method="post">
+                <h1 align="center">@ViewData["Title"]</h1>
+                <h2> <font size="4" face="Arial"> <p align="center"> Войдите в систему, используя Ваш логин и пароль</p></font></h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-control shadow-lg p-3 mb-1 bg-white rounded" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                </br>
+                <div class="form-floating">
+                    <input asp-for="Input.Password" class="form-control shadow-lg p-3 mb-1 bg-white rounded" autocomplete="current-password" aria-required="true" />
+                    <label asp-for="Input.Password" class="form-label"></label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                
+                <div>
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe" class="form-label">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                </br>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100  btn-lg text-white" style="background-color:black">ВОЙТИ</button>
+                </div>
+                <div>
+                    </br>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="color:black">Зарегистрироваться</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
